@@ -1,11 +1,14 @@
-from bot import Bot
-from pyrogram.types import Message
-from pyrogram import filters
-from config import ADMINS, BOT_STATS_TEXT, USER_REPLY_TEXT
 from datetime import datetime
+
+from pyrogram import filters
+from pyrogram.types import Message
+
+from bot import Bot
+from config import ADMINS, BOT_STATS_TEXT, USER_REPLY_TEXT
 from helper_func import get_readable_time
 
-@Bot.on_message(filters.command('stats') & filters.user(ADMINS))
+
+@Bot.on_message(filters.command("stats") & filters.user(ADMINS))
 async def stats(bot: Bot, message: Message):
     now = datetime.now()
     delta = now - bot.uptime
@@ -14,6 +17,6 @@ async def stats(bot: Bot, message: Message):
 
 
 @Bot.on_message(filters.private & filters.incoming)
-async def useless(_,message: Message):
+async def useless(_, message: Message):
     if USER_REPLY_TEXT:
         await message.reply(USER_REPLY_TEXT)

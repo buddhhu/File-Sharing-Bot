@@ -3,7 +3,6 @@ pyrogram
 TgCrypto
 pyromod==1.5
 # --- For-Database ------------ #
-pymongo
-dnspython
+motor[srv]
 # --- For-Web-Response ------- #
 aiohttp
