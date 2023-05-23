@@ -6,6 +6,7 @@ import pyromod.listen
 from aiohttp import web
 from pyrogram import Client
 from pyrogram.enums import ParseMode
+from database.database import cache
 
 from config import (
     API_HASH,
@@ -35,6 +36,7 @@ class Bot(Client):
     async def start(self):
         await super().start()
         usr_bot_me = await self.get_me()
+        await cache()
         self.uptime = datetime.now()
 
         if FORCE_SUB_CHANNEL:
