@@ -15,7 +15,6 @@ user_data = database["users"]
 _cache = []
 
 async def cache():
-    global _cache
     _cache = await full_userbase()
 
 async def present_user(user_id: int):
@@ -31,11 +30,9 @@ async def add_user(user_id: int):
 async def full_userbase():
     if _cache:
         return _cache
-    user_docs = await user_data.find()
     user_ids = []
-    for doc in user_docs:
+    async for doc in user_data.find():
         user_ids.append(doc["_id"])
-
     return user_ids
 
 
